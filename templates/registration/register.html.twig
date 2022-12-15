@@ -3,15 +3,18 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+<form method="post">
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+    {{ form_label(registrationForm.email, 'Email') }}
+    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(registrationForm.plainPassword, 'Email') }}
+    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(registrationForm.agreeTerms, 'RGPD') }}
+    {{ form_widget(registrationForm.agreeTerms) }}
+    <div class="my-2">
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
     {{ form_end(registrationForm) }}
+</form>
+
 {% endblock %}
