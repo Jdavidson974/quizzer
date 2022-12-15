@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="row">
+    {% for item in pro %}
+    <div class="col-4">
+        <h5>{{item}}</h5>
+        <a class="btn btn-primary" href="/all-quiz/{{item.id}}">Voir tous les quiz de ce pro</a>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}

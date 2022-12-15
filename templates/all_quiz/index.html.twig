@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="row">
+    {% if quiz %}
+    {% for item in quiz %}
+    <div class="col-4 p-4">
+        <a href="/reponse-client/{{item.id}}" style="background-color: blueviolet; text-decoration: none;"
+            class="card d-flex p-4">
+            <p class="m-auto text-white">{{item}}</p>
+        </a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col-12 d-flex p-4">
+        <div style="background-color: blueviolet;"
+            class=" d-flex w-100 text-white text-center p-4 flex-column justify-content-center">
+            <p class="m-auto">Pas de quiz pour ce pro</p>
+            <div class="mt-2">
+                <a style="background-color: white; color:blueviolet" class="btn" href="/select/pro">Retour</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
