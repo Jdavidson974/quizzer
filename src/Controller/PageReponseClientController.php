@@ -15,7 +15,7 @@ class PageReponseClientController extends AbstractController
     public function __construct(private ResultatQuizRepository $repo)
     {
     }
-    #[Route('/reponse-client/{id}', name: 'app_page_reponse_client')]
+    #[Route('/user/reponse-client/{id}', name: 'app_page_reponse_client')]
     public function index(Request $request, Quiz $quiz,): Response
     {
         if (isset($_POST)) {

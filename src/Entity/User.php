@@ -79,7 +79,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        //TODO Rajouter un champ sur le formType pour le role 
         $roles = $this->roles;
         return array_unique($roles);
     }
