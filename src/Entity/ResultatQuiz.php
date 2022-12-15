@@ -22,6 +22,9 @@ class ResultatQuiz
     #[ORM\ManyToOne(inversedBy: 'resultat')]
     private ?Client $client = null;
 
+    #[ORM\ManyToOne(inversedBy: 'resultatQuizzes')]
+    private ?Quiz $quiz = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class ResultatQuiz
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getQuiz(): ?Quiz
+    {
+        return $this->quiz;
+    }
+
+    public function setQuiz(?Quiz $quiz): self
+    {
+        $this->quiz = $quiz;
 
         return $this;
     }

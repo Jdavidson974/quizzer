@@ -2,13 +2,21 @@
 
 {% block body %}
 <div class="card">
-    {% for q in quiz.question %}
-    <div class="card-body">
-        <h5>{{q}}</h5>
-        {% for reponse in q.reponse %}
-        {{reponse}}
+    <form action="" method="post">
+
+        {% for key, q in quiz.question %}
+        <input type="hidden" name="{{'question' ~ key}}" value="{{q}}">
+        <div class="card-body">
+            <h5>{{q}}</h5>
+            {% for reponseKey, reponse in q.reponse %}
+            <input type="radio" class="btn-check" name="{{'reponse' ~ q.id  }}" id="{{ key ~ reponseKey}}"
+                autocomplete="off" checked value="{{reponse}}">
+            <label class="btn btn-outline-success" for="{{ key ~ reponseKey}}">{{reponse}}</label>
+
+            {% endfor %}
+        </div>
         {% endfor %}
-    </div>
-    {% endfor %}
+        <button type="submit">aaaa</button>
+    </form>
 </div>
 {% endblock %}

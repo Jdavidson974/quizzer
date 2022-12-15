@@ -24,9 +24,13 @@ class Quiz
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: ResultatQuiz::class)]
+    private Collection $resultatQuizzes;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
+        $this->resultatQuizzes = new ArrayCollection();
     }
     public function __toString()
     {
@@ -81,6 +85,36 @@ class Quiz
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ResultatQuiz>
+     */
+    public function getResultatQuizzes(): Collection
+    {
+        return $this->resultatQuizzes;
+    }
+
+    public function addResultatQuiz(ResultatQuiz $resultatQuiz): self
+    {
+        if (!$this->resultatQuizzes->contains($resultatQuiz)) {
+            $this->resultatQuizzes->add($resultatQuiz);
+            $resultatQuiz->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResultatQuiz(ResultatQuiz $resultatQuiz): self
+    {
+        if ($this->resultatQuizzes->removeElement($resultatQuiz)) {
+            // set the owning side to null (unless already changed)
+            if ($resultatQuiz->getQuiz() === $this) {
+                $resultatQuiz->setQuiz(null);
+            }
+        }
 
         return $this;
     }
