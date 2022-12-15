@@ -46,6 +46,13 @@ class QuizzerAuthAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        $user = $token->getUser();
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
+        }
+        if (in_array('ROLE_PRO', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_dashboard_pro'));
+        }
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }

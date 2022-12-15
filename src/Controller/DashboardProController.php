@@ -11,6 +11,7 @@ class DashboardProController extends AbstractController
     #[Route('/pro/dashboard', name: 'app_dashboard_pro')]
     public function index(): Response
     {
+
         return $this->render('dashboard_pro/index.html.twig', [
             'controller_name' => 'DashboardProController',
         ]);
