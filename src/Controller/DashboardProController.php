@@ -5,16 +5,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-class HomeController extends AbstractController
+class DashboardProController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/pro/dashboard', name: 'app_dashboard_pro')]
     public function index(): Response
     {
-
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('dashboard_pro/index.html.twig', [
+            'controller_name' => 'DashboardProController',
         ]);
     }
 }

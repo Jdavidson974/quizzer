@@ -66,11 +66,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         //TODO Rajouter un champ sur le formType pour le role 
         $roles = $this->roles;
-        if(this->getRole() == 1){
-            $roles[] = 'ADMIN';
-        }else{
-        $roles[] = 'PRO';
-        }
         return array_unique($roles);
     }
 
