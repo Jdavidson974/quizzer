@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="card">
+    {% for q in quiz.question %}
+    <div class="card-body">
+        <h5>{{q}}</h5>
+        {% for reponse in q.reponse %}
+        {{reponse}}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
