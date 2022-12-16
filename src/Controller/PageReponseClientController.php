@@ -35,7 +35,9 @@ class PageReponseClientController extends AbstractController
                 $entity->setUser($this->getUser());
                 $this->repo->save($entity, true);
             }
+
             $notifier->send(new Notification('Vos reponse ont bien été envoyées', ['browser']));
+            return $this->redirect('/user/all-quiz/' . $quiz->getUsers()->getId());
         }
         return $this->render('page_reponse_client/index.html.twig', [
             'controller_name' => 'PageReponseClientController',
