@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardProController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Bienvenue sur votre dashboard {{app.user}}</h1>
+    </div>
+    <div class="col-12">
+        <div class="card p-4">
+            <div class="row">
+                <div class="col-12 p-3">
+                    <h4>Vos Quiz</h4>
+                </div>
+                {% if quiz %}
+                {% for item in quiz %}
+                <div class="col-4 p-4">
+                    <a href="/pro/show-result/{{item.id}}" style="background-color: blueviolet; text-decoration: none;"
+                        class="card d-flex p-4">
+                        <p class="m-auto text-white">Quiz : <span class="fw-semibold">{{item}}</span></p>
+                    </a>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Utilisateur/Documents/Developpement/formation/quizzer/src/Controller/DashboardProController.php'|file_link(0) }}">src/Controller/DashboardProController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Utilisateur/Documents/Developpement/formation/quizzer/templates/dashboard_pro/index.html.twig'|file_link(0) }}">templates/dashboard_pro/index.html.twig</a></code></li>
-    </ul>
+    <div class="col-4"></div>
 </div>
 {% endblock %}
