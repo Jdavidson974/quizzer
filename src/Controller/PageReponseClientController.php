@@ -18,7 +18,7 @@ class PageReponseClientController extends AbstractController
     public function __construct(private ResultatQuizRepository $repo)
     {
     }
-    #[Route('/reponse-client/{id}', name: 'app_page_reponse_client')]
+    #[Route('/user/reponse-client/{id}', name: 'app_page_reponse_client')]
     public function index(Request $request, Quiz $quiz,): Response
     {
         dump($_POST);
@@ -40,7 +40,7 @@ class PageReponseClientController extends AbstractController
     }
 
 
-    #[Route('/all-quiz/{id}', name: 'app_select_pro')]
+    #[Route('/user/all-quiz/{id}', name: 'app_select_pro')]
     public function allQuizIndex(QuizRepository $quizRepository, UserRepository $userRepository, User $user,): Response
     {
         $quiz = $quizRepository->findBy(["user" => $user]);

@@ -2,11 +2,14 @@
 {% block body %}
 <div class="row">
     {% if quiz %}
+    <div class="col-12 d-flex justify-content-center">
+        <h1 style="color: blueviolet;">{{user}}</h1>
+    </div>
     {% for item in quiz %}
     <div class="col-4 p-4">
-        <a href="/reponse-client/{{item.id}}" style="background-color: blueviolet; text-decoration: none;"
+        <a href="/user/reponse-client/{{item.id}}" style="background-color: blueviolet; text-decoration: none;"
             class="card d-flex p-4">
-            <p class="m-auto text-white">{{item}}</p>
+            <p class="m-auto text-white">Quiz : <span class="fw-semibold">{{item}}</span></p>
         </a>
     </div>
     {% endfor %}

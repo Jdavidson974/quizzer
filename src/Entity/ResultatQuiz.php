@@ -19,9 +19,6 @@ class ResultatQuiz
     #[ORM\Column(length: 255)]
     private ?string $reponse = null;
 
-    #[ORM\ManyToOne(inversedBy: 'resultat')]
-    private ?Client $client = null;
-
     #[ORM\ManyToOne(inversedBy: 'resultatQuizzes')]
     private ?Quiz $quiz = null;
 
@@ -54,17 +51,7 @@ class ResultatQuiz
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
 
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     public function getQuiz(): ?Quiz
     {

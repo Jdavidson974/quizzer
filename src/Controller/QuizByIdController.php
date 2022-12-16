@@ -12,13 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizByIdController extends AbstractController
 {
 
-    #[Route('/all-quiz/{id}', name: 'app_quiz_by_id')]
+    #[Route('/user/all-quiz/{id}', name: 'app_quiz_by_id')]
     public function index(QuizRepository $quizRepository, UserRepository $userRepository, User $user,): Response
     {
         $quiz = $quizRepository->findBy(["users" => $user]);
         return $this->render('all_quiz/index.html.twig', [
             'controller_name' => 'SelectProController',
-            'quiz' => $quiz
+            'quiz' => $quiz,
+            'user' => $user,
         ]);
     }
 }

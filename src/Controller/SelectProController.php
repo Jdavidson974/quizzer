@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SelectProController extends AbstractController
 {
-    #[Route('/select/pro', name: 'app_select_pro')]
+    #[Route('/user/select/pro', name: 'app_select_pro')]
     public function index(UserRepository $userRepository): Response
     {
         $pro = $userRepository->findBy(['role' => 2]);

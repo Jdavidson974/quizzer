@@ -12,9 +12,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/dashboard">DashBoard</a>
                 </li>
-                {% else %}
+                {% endif %}
+                {% if app.user.roles[0] == 'ROLE_PRO' %}
                 <li class="nav-item">
                     <a class="nav-link" href="/pro/dashboard">DashBoard</a>
+                </li>
+                {% endif %}
+                {% if app.user.roles[0] == 'ROLE_USER' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/select/pro">SELECTION DU PRO</a>
                 </li>
                 {% endif %}
                 {% endif %}
