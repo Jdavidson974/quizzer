@@ -11,6 +11,8 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PageReponseClientController extends AbstractController
@@ -19,7 +21,7 @@ class PageReponseClientController extends AbstractController
     {
     }
     #[Route('/user/reponse-client/{id}', name: 'app_page_reponse_client')]
-    public function index(Request $request, Quiz $quiz,): Response
+    public function index(Request $request, Quiz $quiz, NotifierInterface $notifier): Response
     {
         dump($_POST);
         if (isset($_POST) && !empty($_POST)) {
@@ -30,8 +32,10 @@ class PageReponseClientController extends AbstractController
                 $entity->setQuestion($dataPost['question' . $i]);
                 $entity->setReponse($dataPost['reponse' . $i + 1]);
                 $entity->setQuiz($quiz);
+                $entity->setUser($this->getUser());
                 $this->repo->save($entity, true);
             }
+            $notifier->send(new Notification('Vos reponse ont bien été envoyées', ['browser']));
         }
         return $this->render('page_reponse_client/index.html.twig', [
             'controller_name' => 'PageReponseClientController',
