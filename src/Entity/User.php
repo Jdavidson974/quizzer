@@ -37,9 +37,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Quiz::class)]
     private Collection $quizzes;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ResultatQuiz::class)]
+    private Collection $resultatQuizzes;
+
     public function __construct()
     {
         $this->quizzes = new ArrayCollection();
+        $this->resultatQuizzes = new ArrayCollection();
     }
 
     public function __toString()
@@ -150,6 +154,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($quiz->getUsers() === $this) {
                 $quiz->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ResultatQuiz>
+     */
+    public function getResultatQuizzes(): Collection
+    {
+        return $this->resultatQuizzes;
+    }
+
+    public function addResultatQuiz(ResultatQuiz $resultatQuiz): self
+    {
+        if (!$this->resultatQuizzes->contains($resultatQuiz)) {
+            $this->resultatQuizzes->add($resultatQuiz);
+            $resultatQuiz->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResultatQuiz(ResultatQuiz $resultatQuiz): self
+    {
+        if ($this->resultatQuizzes->removeElement($resultatQuiz)) {
+            // set the owning side to null (unless already changed)
+            if ($resultatQuiz->getUser() === $this) {
+                $resultatQuiz->setUser(null);
             }
         }
 
