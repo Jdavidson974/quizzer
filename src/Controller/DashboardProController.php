@@ -6,13 +6,15 @@ use App\Entity\Quiz;
 use App\Entity\User;
 use App\Repository\QuizRepository;
 use App\Repository\ResultatQuizRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardProController extends AbstractController
 {
-    public function __construct(private QuizRepository $quizRepository)
+    public function __construct(private QuizRepository $quizRepository,)
     {
     }
     #[Route('/pro/dashboard', name: 'app_dashboard_pro')]
@@ -27,10 +29,11 @@ class DashboardProController extends AbstractController
     }
 
     #[Route('/pro/show-result/{id}', name: 'app_show_result')]
-    public function showResult(Quiz $quiz, ResultatQuizRepository $resultatQuizRepository): Response
+    public function showResult(EntityManagerInterface $entityManager, Quiz $quiz, ResultatQuizRepository $resultatQuizRepository): Response
     {
         $resultats = $resultatQuizRepository->findBy(['quiz' => $quiz]);
-        dump($resultats);
+        $a = $resultatQuizRepository->test();
+        dump($a);
         return $this->render('result_pro/index.html.twig', [
             'controller_name' => 'DashboardProController',
             'resultats' => $resultats,
