@@ -18,11 +18,16 @@ class QuizType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $users = $this->userRepository->findUsers('ROLE_PRO');
+        $array = [];
+        foreach ($users as $key => $value) {
+            array_push($array, [$value->getEmail() =>  $value->getId()]);
+        }
+        dump($array);
         $builder
             ->add('name')
             ->add('question')
             ->add('users', ChoiceType::class, [
-                'choices' => $users
+                'choices' => $array,
             ]);
     }
 
