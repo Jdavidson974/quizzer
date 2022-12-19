@@ -20,7 +20,7 @@ class QuizType extends AbstractType
         $users = $this->userRepository->findUsers('ROLE_PRO');
         $array = [];
         foreach ($users as $key => $value) {
-            array_push($array, [$value->getEmail() =>  $value->getId()]);
+            array_push($array, [$value->getEmail() =>  $value]);
         }
         dump($array);
         $builder
