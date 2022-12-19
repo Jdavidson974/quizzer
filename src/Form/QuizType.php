@@ -22,7 +22,6 @@ class QuizType extends AbstractType
         foreach ($users as $key => $value) {
             array_push($array, [$value->getEmail() =>  $value]);
         }
-        dump($array);
         $builder
             ->add('name')
             ->add('question')
