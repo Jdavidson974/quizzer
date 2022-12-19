@@ -6,6 +6,7 @@ use App\Repository\QuizRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
 class Quiz
@@ -13,15 +14,18 @@ class Quiz
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['quiz'])]
     private ?int $id = null;
 
     #[ORM\ManyToMany(targetEntity: Question::class, inversedBy: 'quizzes')]
+
     private Collection $question;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     private ?User $users = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['quiz'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: ResultatQuiz::class)]
